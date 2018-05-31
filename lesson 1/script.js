@@ -14,6 +14,6 @@ var mainList = {
  mainList.shopGoods[i] = type;
  }
 
-var oneDayBudget = budget / 30;
+var oneDayBudget = mainList.shopBudget / 30;
 
 alert( `Бюджет на 1 день = ${oneDayBudget}` );
