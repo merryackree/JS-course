@@ -1,5 +1,5 @@
-var budget = parseInt(prompt("Ваш бюджет на месяц?", ""));
-var name = prompt("Название вашего магазина?", "");
+var budget = prompt("Ваш бюджет на месяц?");
+var name = prompt("Название вашего магазина?");
 
 var mainList = {
 	shopBudget: budget,
@@ -10,10 +10,12 @@ var mainList = {
 }
 
  for (let i = 0; i < 3; i++) {
- var type = prompt("Какой тип товаров будем продавать?", "");
+ var type = prompt("Какой тип товаров будем продавать?");
  mainList.shopGoods[i] = type;
  }
 
 var oneDayBudget = mainList.shopBudget / 30;
 
 alert( `Бюджет на 1 день = ${oneDayBudget}` );
+
+console.log(mainList);

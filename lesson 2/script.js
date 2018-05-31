@@ -1,21 +1,59 @@
-var shopBudget = parseInt(prompt("Ваш бюджет на месяц?", ""));
-var shopName = prompt("Название вашего магазина?", "");
-var shopGoods = [];
-var employees = {};
-
- for (var i = 0; i < 3; i++) {
- var type = prompt("Какой тип товаров будем продавать?", "");
- shopGoods[i] = type;
- }
+var budget = prompt("Ваш бюджет на месяц?");
+var name = prompt("Название вашего магазина?");
 
 var mainList = {
-	shopBudget,
-	shopName,
-	shopGoods,
-	employees,
+	shopBudget: budget,
+	shopName: name,
+	shopGoods: [],
+	employees: {},
 	open: true
 }
 
-var oneDayBudget = shopBudget / 30;
+var i = 0;
+//Первый способ
+ for (i = 0; i < 5; i++) {
 
-alert( `Бюджет на 1 день = ${oneDayBudget}` );
+ 	let a = prompt("Какой тип товаров будем продавать?");
+
+ 	if ((typeof(a)) === 'string' && (typeof(a)) != null && a != '' && a.length < 50 ) {
+ 		mainList.shopGoods[i] = a;
+ 	} else {
+ 		console.log('Произошла ошибка');
+ 	  }
+ 
+ }
+
+ // Способ второй:
+ /* 
+	while (i < 5) {
+
+		let a = prompt("Какой тип товаров будем продавать?");
+
+		if ((typeof(a)) === 'string' && (typeof(a)) != null && a != '' && a.length < 50 ) {
+ 		mainList.shopGoods[i] = a;
+ 		i++;
+ 		} else {
+ 		console.log('Произошла ошибка');
+ 	  	  }
+  	} */
+
+
+// Способ третий
+/*
+do {
+
+ let a = prompt("Какой тип товаров будем продавать?");
+
+  if ((typeof(a)) === 'string' && (typeof(a)) != null && a != '' && a.length < 50 ) {
+ 	  mainList.shopGoods[i] = a;
+ 	  i++;
+  } else {
+ 		console.log('Произошла ошибка');
+ 	}
+}
+while (i < 5);*/
+
+
+alert( mainList.shopBudget / 30 );
+
+console.log(mainList)
