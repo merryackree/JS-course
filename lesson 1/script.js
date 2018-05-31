@@ -1,21 +1,19 @@
-var shopBudget = parseInt(prompt("Ваш бюджет на месяц?", ""));
-var shopName = prompt("Название вашего магазина?", "");
-var shopGoods = [];
-var employees = {};
-
- for (var i = 0; i < 3; i++) {
- var type = prompt("Какой тип товаров будем продавать?", "");
- shopGoods[i] = type;
- }
+var budget = parseInt(prompt("Ваш бюджет на месяц?", ""));
+var name = prompt("Название вашего магазина?", "");
 
 var mainList = {
-	shopBudget,
-	shopName,
-	shopGoods,
-	employees,
+	shopBudget: budget,
+	shopName: name,
+	shopGoods: [],
+	employees: {},
 	open: true
 }
 
-var oneDayBudget = shopBudget / 30;
+ for (let i = 0; i < 3; i++) {
+ var type = prompt("Какой тип товаров будем продавать?", "");
+ mainList.shopGoods[i] = type;
+ }
+
+var oneDayBudget = budget / 30;
 
 alert( `Бюджет на 1 день = ${oneDayBudget}` );
