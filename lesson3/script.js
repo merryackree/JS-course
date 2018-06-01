@@ -35,6 +35,7 @@ function chooseGoods(){
 	 		mainList.shopGoods[i] = a;
 	 	} else {
 	 		console.log('Произошла ошибка');
+	 		i--;
 	 	  }
 	 }
 }
