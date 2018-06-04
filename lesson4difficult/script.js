@@ -28,10 +28,10 @@ function getFriendlyNumbers() {
 	}
 	let arr = [];
 	let count = 0;
-	for (start = 1; start < end; start++) {
-		num1 = calcSum(start);
+	for ( let i = start; i < end; i++) {
+		num1 = calcSum(i);
 		num2 = calcSum(num1);
-		if (num1 != start && num2 == start) {
+		if (num1 != i && num2 == i) {
 			arr.push('[' + num1 + ',' + num2 + ']');
 			count = count + 1;
 		} 
