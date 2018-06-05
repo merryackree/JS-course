@@ -34,7 +34,13 @@ function getFriendlyNumbers() {
 		if (num1 != i && num2 == i) {
 			arr.push('[' + num1 + ',' + num2 + ']');
 			count = count + 1;
+
 		} 
+	}
+
+	for ( let m = -1; m < arr.length; m++) {
+		m = m + 1;
+		delete arr[m];
 	}
 
 	if (count == 0){

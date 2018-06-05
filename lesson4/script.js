@@ -5,7 +5,7 @@ let budget,
 function start() {
 	budget = prompt("Ваш бюджет на месяц?",'');
 
-	while (isNaN(budget) || budget == '' || budget == null){
+	while (isNaN(budget) || budget == '' || budget == null) {
 		budget = prompt("Ваш бюджет на месяц?",'');
 	}
 
@@ -27,12 +27,12 @@ var mainList = {
 	chooseGoods: function chooseGoods(){
 		 for (let i = 0; i < 4; i++) {
 
-		 	let a = prompt("Какой тип товаров будем продавать?");
+		 	let a = prompt("Какой тип товаров будем продавать?",'');
 
 		 	if ((typeof(a)) === 'string' && (typeof(a)) != null && a != '' && a.length < 50 && isNaN(a)) {
 		 		mainList.shopGoods[i] = a;
 		 	} else {
-		 		console.log('Пожалуйста введите тип товаров');
+		 		console.log('Пожалуйста введите правильно тип товаров');
 		 		i--;
 		 	  }
 		 }
@@ -45,7 +45,7 @@ var mainList = {
 	},
 	hireEmployees: function hireEmployees() {
 		for (let i = 0; i < 4; i++) {
-			let employeesName = prompt("Введите имя сотрудника");
+			let employeesName = prompt("Введите имя сотрудника",'');
 			employeesName = (i+1).toString() + '-' + employeesName;
 			mainList.employees.workers[i] = employeesName;
 		}
@@ -56,9 +56,13 @@ var mainList = {
 	},
 	chooseShopItems: function chooseShopItems() {
 		let items = prompt('Перечеслите через запятую ваши тавары', '');
+		while((typeof(items)) !== 'string' || items == '' || (typeof(items)) == null || isNaN(items) == false) {
+		items = prompt('Перечеслите через запятую ваши тавары', '');	
+		}
 		mainList.shopItems = items.split(',');
 		mainList.shopItems.push(prompt('Подождите, еще ', ''));
 		mainList.shopItems.sort();
+	  	 
 	},
 	listItems: function listItems() {
 		document.write('У нас вы сможете купить: ');
