@@ -20,8 +20,8 @@ function calcSum(num) {
 
 function getFriendlyNumbers() {
 	let num1, num2;
-	let start = parseInt(prompt('Start point: '));
-	let end = parseInt(prompt('End point: '));
+	let start = parseInt(prompt('Start point: ', ''));
+	let end = parseInt(prompt('End point: ', ''));
 	if (start > end || start < 0 || end < 0 || isNaN(start) || isNaN(end) || isFloat(start) || isFloat(end)) {
 		console.log(false);
 		return false;
@@ -32,9 +32,8 @@ function getFriendlyNumbers() {
 		num1 = calcSum(i);
 		num2 = calcSum(num1);
 		if (num1 != i && num2 == i) {
-			arr.push('[' + num1 + ',' + num2 + ']');
+			arr.push([num1,num2]);
 			count = count + 1;
-
 		} 
 	}
 
@@ -44,7 +43,7 @@ function getFriendlyNumbers() {
 	}
 
 	if (count == 0){
-		arr.push('[]');
+		arr.push([]);
 	}
 
 	console.log(arr);
