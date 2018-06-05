@@ -20,8 +20,8 @@ function calcSum(num) {
 
 function getFriendlyNumbers() {
 	let num1, num2;
-	let start = parseInt(prompt('Start point: ', ''));
-	let end = parseInt(prompt('End point: ', ''));
+	let start = prompt('Start point: ', '');
+	let end = prompt('End point: ', '');
 	if (start > end || start < 0 || end < 0 || isNaN(start) || isNaN(end) || isFloat(start) || isFloat(end)) {
 		console.log(false);
 		return false;
