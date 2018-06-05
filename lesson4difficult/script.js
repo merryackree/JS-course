@@ -52,7 +52,8 @@ function getFriendlyNumbers() {
 		myArr.push([]);
 	}
 
-	console.log(myArr);	
+	console.log(myArr);
+	return(myArr);	
 }
 
 getFriendlyNumbers();
