@@ -38,16 +38,21 @@ function getFriendlyNumbers() {
 	}
 
 	for ( let m = -1; m < arr.length; m++) {
-		m = m + 1;
-		delete arr[m];
+	m = m + 1;
+	delete arr[m];
+	}
+	let myArr =[];
+	for (let z = 0; z < arr.length; z++) {
+		if (arr[z] != null){
+			myArr.push(arr[z]);
+		}
 	}
 
 	if (count == 0){
-		arr.push([]);
+		myArr.push([]);
 	}
 
-	console.log(arr);
- 	
+	console.log(myArr);	
 }
 
 getFriendlyNumbers();
