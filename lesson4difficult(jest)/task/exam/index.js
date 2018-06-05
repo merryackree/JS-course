@@ -20,10 +20,7 @@ function calcSum(num) {
 
 function getFriendlyNumbers(start, end) {
 	let num1, num2;
-	start = parseFloat(prompt('Start point: ', ''));
-	end = parseFloat(prompt('End point: ', ''));
 	if (start > end || start < 0 || end < 0 || isNaN(start) || isNaN(end) || isFloat(start) || isFloat(end) || (typeof(start, end)) == 'string') {
-		console.log(false);
 		return false;
 	}
 	let arr = [];
@@ -49,11 +46,14 @@ function getFriendlyNumbers(start, end) {
 	}
 
 	if (count == 0){
-		myArr.push([]);
+		myArr.push();
 	}
-
-	console.log(myArr);
 	return(myArr);	
+
 }
 
-getFriendlyNumbers();
+module.exports = {
+    firstName: 'Виктор',
+    secondName: 'Мериакри',
+    task: getFriendlyNumbers
+}
