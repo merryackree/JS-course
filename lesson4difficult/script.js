@@ -49,7 +49,7 @@ function getFriendlyNumbers(start, end) {
 	}
 
 	if (count == 0){
-		myArr.push([]);
+		myArr.push();
 	}
 
 	console.log(myArr);
