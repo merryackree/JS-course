@@ -17,6 +17,8 @@ let open = document.getElementById('open-btn'),
 let budget,
 	price;
 
+
+
 btn[0].addEventListener('click', () => {
 	budget = prompt("Ваш бюджет на месяц?",'21000');
 
@@ -38,21 +40,24 @@ btn[0].addEventListener('click', () => {
 			mainList.isOpen = true;
 });
 
+disableButtons(goodsItem.value, btn[1]);
 btn[1].addEventListener('click', () => {
 			let list = document.createElement('ul');
 			list.classList.add('list');
 			goodsValue.appendChild(list);
 			let goodsList = [];
+			let arr = [];
 			    for (let i = 0; i < goodsItem.length; i++) {
 			        let a = goodsItem[i].value;
+			        if (a != '') {
+			        	arr.push(a);
+			        }
 			        goodsList[i] = document.createElement('li');
-			        if ((typeof(a)) === 'string' && (typeof(a)) != null  && a.length < 50) {
+			        if ((typeof(a)) === 'string' && (typeof(a)) != null  && a.length < 50 && arr.length > 0) {
 			            console.log('Всё верно');
 			            mainList.shopGoods[i] = a;
 			            goodsList[i].textContent = setCapitalName(mainList.shopGoods[i])
-			        } else {
-			            i--
-			        }
+			        } 
 			        list.appendChild(goodsList[i]);
 			    }
 			    
@@ -60,23 +65,24 @@ btn[1].addEventListener('click', () => {
 });
 
 chooseItems.addEventListener('change', () => {
-
+	if(mainList.isOpen){
 		let items = chooseItems.value;
 		if (items == '' || isNaN(items)) {
 		mainList.shopItems = items.split(',');
 		mainList.shopItems.sort();
 		itemsValue.textContent = mainList.shopItems;
 		}
+	}
 });
 
-
+disableButtons(budget, btn[2]);
 btn[2].addEventListener('click', () => {
 
 	dailyBudget.value = Math.round(budget / 30) + '$ в день';
 
 });
 
-
+disableButtons(employersHire.value, btn[3]);
 btn[3].addEventListener('click', () => {
 	let reset = '';
 	let letters = /^[А-Яа-я]+$/;
@@ -92,7 +98,7 @@ btn[3].addEventListener('click', () => {
 	employersValue.textContent = reset.substr(0, reset.length-2);
 });
 
-userTime.addEventListener('change', () =>{
+userTime.addEventListener('input', () =>{
 	let time = userTime.value;
 	    if (time < 0) {
 	        console.log('Это невозможно');
@@ -145,7 +151,22 @@ var mainList = {
 
 
 function setCapitalName(name) {
-    return name[0].toUpperCase() + name.slice(1).toLowerCase()
+	if (name != ''){
+    return name[0].toUpperCase() + name.slice(1).toLowerCase() 
+    }
 }
+
+function disableButtons(input, button){
+	document.querySelector('.main-functions').addEventListener('mouseover', () =>{
+		for (let i = 1; i < btn.length; i++) {
+			if (!check(input)) {
+			button.setAttribute('disabled','');
+			} else {
+				button.removeAttribute('disabled');
+			}
+		}
+})		
+}
+
 
 console.log(mainList.isOpen);

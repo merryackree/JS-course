@@ -12,15 +12,12 @@ console.log(res);
 var sum = 0;
 let arr = [20, 33, 1, 'Человек', 2, 3];
  for (let i = 0; i < arr.length; i++) {
-	if ( isNaN(arr[i]) ) {
-		i++;
-	}
-	else {
+	if ( !isNaN(arr[i])) {
 		sum = sum + arr[i];
 	}
  }
 
-console.log(Math.sqrt(sum));
+console.log(sum);
 
 let stroke = '123 456 789  sometext some text pretty cool letter right here yeah';
 

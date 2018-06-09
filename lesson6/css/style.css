@@ -23,6 +23,7 @@ body {
       -ms-flex-align: center;
           align-items: center;
           margin-top: 10px;
+          cursor: pointer;
 }
 .open .img{
   height: 200px;
@@ -42,12 +43,9 @@ body {
   width: 180px;
   height: 50px;
   margin-top: 80px;
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
-.open-btn:hover{
-  opacity: 1; 
-}
 .main {
   width: 100%;
   margin-top: 30px;
@@ -225,4 +223,8 @@ input:focus{
   outline: none;
   border: 1px solid #4A0088;
   
+}
+
+img:hover{
+  cursor: pointer;
 }
