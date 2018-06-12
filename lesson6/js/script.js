@@ -42,6 +42,7 @@ btn[0].addEventListener('click', () => {
 
 disableButtons(goodsItem.value, btn[1]);
 btn[1].addEventListener('click', () => {
+			goodsValue.innerHTML = '';
 			let list = document.createElement('ul');
 			list.classList.add('list');
 			goodsValue.appendChild(list);
