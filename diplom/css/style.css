@@ -24,6 +24,18 @@ textarea:focus {
   padding: 0 !important;
 }
 
+.show{
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.hide{
+  display: none;
+}
+
+
 .noscroll {
     position: fixed!important
 }

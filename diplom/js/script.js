@@ -110,4 +110,49 @@ window.addEventListener('DOMContentLoaded', function(){
 	}
 
 
+let tab = document.getElementsByClassName('glazing_block'),
+			slider = document.getElementsByClassName('glazing_slider')[0],
+			sliderLinks = slider.getElementsByTagName('a');
+
+let tabRows = ['tree', 'aluminum', 'plastic', 'french', 'rise'];
+		for (let i = 0; i < tabRows.length; i++) {
+			document.querySelector(`.${tabRows[i]}`).classList.add('tab-content');
+		}
+
+let tabContent = document.getElementsByClassName('tab-content');
+
+	function hideTabs(a){
+		for (let i = a; i < tabContent.length; i++) {
+			tabContent[i].classList.remove('show');
+			tabContent[i].classList.add('hide');
+		}
+	}
+
+
+	hideTabs(1);
+
+	function showTabs(b) {
+		if (tabContent[b].classList.contains('hide')) {
+			hideTabs(0);
+			tabContent[b].classList.remove('hide');
+			tabContent[b].classList.add('show');
+		}
+
+	}
+
+	for (let i = 0; i < tab.length; i++) {
+		tab[i].addEventListener('click', function(e) {
+			for(let j = 0; j < sliderLinks.length; j++) {
+				sliderLinks[j].classList.remove('active');
+			}
+			sliderLinks[i].classList.add('active');
+			e.preventDefault();
+			showTabs(i);
+		});
+	}
+
+
+
+
+
 });
