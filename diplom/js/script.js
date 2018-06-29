@@ -1,5 +1,7 @@
 window.addEventListener('DOMContentLoaded', function(){
 
+			//Modals
+
 	let engineer_btn = document.querySelector('.popup_engineer_btn'),
 			engineer_overlay = document.querySelector('.popup_engineer'),
 			engineer_close = engineer_overlay.getElementsByClassName('popup_close')[0],
@@ -34,15 +36,18 @@ window.addEventListener('DOMContentLoaded', function(){
 	function hideModal(overlay, element, event) {
 			if (event.target.classList.contains(element) || event.target.innerHTML.length == 1) {
 			overlay.style.display = 'none';
-			document.body.classList.remove('noscroll');
+			// document.body.classList.remove('noscroll');
 		}
 	}
 
 	function showModal(overlay) {
+			overlay.classList.add('fadeIn');
 			overlay.style.display = 'block';
-			document.body.classList.add('noscroll');
+			// document.body.classList.add('noscroll');
 	}
 
+
+		//Ajax modals
 
 	let message = new Object();
 			message.loading = 'Загрузка...';
@@ -110,6 +115,8 @@ window.addEventListener('DOMContentLoaded', function(){
 	}
 
 
+			//Slider tabs
+
 let tab = document.getElementsByClassName('glazing_block'),
 			slider = document.getElementsByClassName('glazing_slider')[0],
 			sliderLinks = slider.getElementsByTagName('a');
@@ -152,7 +159,128 @@ let tabContent = document.getElementsByClassName('tab-content');
 	}
 
 
+		//Calc
 
+	let priceBtn = document.querySelectorAll('.glazing_price_btn'),
+			popup_calc = document.getElementsByClassName('popup_calc')[0],
+			balcon = document.getElementsByClassName('balcon_icons')[0];
+			balconIcons = balcon.getElementsByTagName('a'),
+			bigImg = document.querySelector('.big_img'),
+			balconImage = bigImg.getElementsByTagName('img'),
+			userWidth = popup_calc.querySelector('#width'),
+			userHeight = popup_calc.querySelector('#height'),
+			nextBtn = popup_calc.querySelector('.popup_calc_button'),
+			calcProfileOverlay = document.getElementsByClassName('popup_calc_profile')[0];
+			calcProfileBtn = document.getElementsByClassName('popup_calc_profile_button')[0],
+			calcEndOverlay = document.querySelector('.popup_calc_end'),
+			mainOverlay = document.querySelector('.popup_calc_content'),
+			calcPrefs = {};
+
+
+	blockChars(userWidth);
+	blockChars(userHeight);
+
+	for (let i = 0; i < priceBtn.length; i++) {
+			priceBtn[i].addEventListener('click', function() {
+				showModal(popup_calc);
+			});
+	}
+
+
+	for (let i = 0; i < balconIcons.length; i++) {
+			balconIcons[i].addEventListener('click', function(e) {
+			e.preventDefault();
+			for (let m = 0; m < balconIcons.length; m++){
+				balconIcons[m].querySelector('img').style.cssText = "height: 40px";
+			}
+			balconIcons[i].querySelector('img').style.cssText = "height: 54px";
+			calcPrefs.windowsType = balconIcons[i].className;
+			if (balconImage[i].outerHTML.indexOf(balconIcons[i].className) != -1) {
+				for(let j = 0; j < balconImage.length; j++) {
+					balconImage[j].setAttribute('id', 'type0');
+				}
+				balconImage[i].setAttribute('id', 'type1');
+			} 
+			});
+	}
+
+	let newmess = document.createElement('div');
+
+	nextBtn.addEventListener('click', () => {
+		if (userWidth.value != '' && userHeight.value != ''){
+		calcPrefs.width = userWidth.value;
+		calcPrefs.height = userHeight.value;
+		popup_calc.style.display = 'none';
+		showModal(calcProfileOverlay);
+		} else {
+			mainOverlay.appendChild(newmess);
+			newmess.textContent = '';
+			newmess.textContent = 'Вы не ввели значения';		
+		}
+	});
+
+	let warm = document.getElementsByName('checkbox-test')[1],
+			cold = document.getElementsByName('checkbox-test')[0];
+
+	warm.addEventListener('change', () => {
+		if (warm.checked) {
+			cold.checked = false;
+		}
+	});	
+
+	cold.addEventListener('change', () => {
+		if (cold.checked) {
+			warm.checked = false;
+		}
+	});	
+
+	calcProfileBtn.addEventListener('click', () =>{
+		if (warm.checked || cold.checked){
+		calcProfileOverlay.style.display = 'none';
+		showModal(calcEndOverlay);
+		let materialType = document.querySelector('#view_type');
+		calcPrefs.material =	materialType.options[materialType.selectedIndex].value;
+			if(warm.checked) {
+				calcPrefs.wheather = 'Теплое';
+			} else {
+				calcPrefs.wheather = 'Холодное';
+			}
+		} else {
+			document.querySelector('.popup_calc_profile_content').appendChild(newmess);
+			newmess.textContent = '';
+			newmess.textContent = 'Пожалуйста выберите тип погоды';
+		}
+
+	});
+	
+exitCalc(popup_calc);
+exitCalc(calcProfileOverlay);
+exitCalc(calcEndOverlay);
+
+let calcForm = calcEndOverlay.getElementsByTagName('form')[0];
+
+	calcForm.addEventListener('submit', function(e) {
+			
+			e.preventDefault()
+			let prefsObject = document.createElement('input');
+				calcForm.appendChild(prefsObject);
+				prefsObject.value = calcPrefs.toString();
+				prefsObject.style.display = "none";
+				sendToServer(calcForm);
+				console.log(calcPrefs);
+
+	});
+
+
+function exitCalc(overlay) {
+
+			overlay.addEventListener('click', (e) => {
+				if (e.target.innerHTML.length == 1) {
+					calcPrefs = {};
+					overlay.style.display = 'none';
+				}
+			});
+}
 
 
 });
