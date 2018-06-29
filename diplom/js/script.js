@@ -282,5 +282,19 @@ function exitCalc(overlay) {
 			});
 }
 
+			//Auto popup after 60 seconds
+
+	let num = 0;
+	let interval = setInterval(autoShowModal, 1000);
+	function autoShowModal(){
+		num++
+		if (num >= 60) {
+			clearInterval(interval);
+			showModal(phone_overlay)
+		}
+	}
+
+		//Pictures zoom
+
 
 });
