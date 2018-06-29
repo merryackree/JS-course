@@ -43,4 +43,71 @@ window.addEventListener('DOMContentLoaded', function(){
 			document.body.classList.add('noscroll');
 	}
 
+
+	let message = new Object();
+			message.loading = 'Загрузка...';
+			message.success = 'Спасибо! Скоро мы с вами свяжемся';
+			message.failure = 'Что-то пошло не так';
+
+	let forms = document.getElementsByClassName('form'),	
+			statusMessage = document.createElement('div');
+
+			statusMessage.classList.add('status');
+
+		for (let i = 0; i < forms.length; i++) {
+			let input = forms[i].getElementsByTagName('input');
+			blockChars(input[1]);
+			forms[i].addEventListener('submit', function(e) {
+				e.preventDefault();
+				sendToServer(forms[i]);
+			});
+		}	
+
+
+	function sendToServer(targetForm) {
+
+		targetForm.appendChild(statusMessage);
+
+		let request = new XMLHttpRequest();
+		request.open("POST", "server.php");
+		request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+		let formData = new FormData(targetForm);
+
+		request.send(formData);
+
+		request.onreadystatechange = function() {
+			if (request.readyState < 4) {
+				statusMessage.innerHTML = message.loading;
+			} else if (request.readyState === 4) {
+				if (request.status == 200 && request.status < 300) {
+						statusMessage.innerHTML = message.success;
+				} else {
+					statusMessage.innerHTML = message.failure;
+				}
+			} 
+		}
+
+		let inputs = targetForm.getElementsByTagName('input');
+
+		for (let j = 0; j < inputs.length; j++){
+			if(inputs[j].value.length > 0) {
+				inputs[j].value = '';
+			}
+		}
+
+	}
+
+
+	function blockChars(input){
+		let invalidChars = ['-', '+', 'e', ',' ,'.', ' '];
+		input.setAttribute('type', 'number');
+		input.addEventListener('keydown', function(e){
+			if(invalidChars.includes(e.key)) {
+				e.preventDefault();
+			}
+		});
+	}
+
+
 });
