@@ -36,6 +36,7 @@ window.addEventListener('DOMContentLoaded', function(){
 	function hideModal(overlay, element, event) {
 			if (event.target.classList.contains(element) || event.target.innerHTML.length == 1) {
 			overlay.style.display = 'none';
+			statusMessage.textContent = '';
 			// document.body.classList.remove('noscroll');
 		}
 	}
@@ -58,6 +59,7 @@ window.addEventListener('DOMContentLoaded', function(){
 			statusMessage = document.createElement('div');
 
 			statusMessage.classList.add('status');
+			statusMessage.textContent = '';
 
 		for (let i = 0; i < forms.length; i++) {
 			let input = forms[i].getElementsByTagName('input');
@@ -204,18 +206,19 @@ let tabContent = document.getElementsByClassName('tab-content');
 			});
 	}
 
-	let newmess = document.createElement('div');
+	let newMess = document.createElement('div');
 
 	nextBtn.addEventListener('click', () => {
+		newMess.textContent = '';
 		if (userWidth.value != '' && userHeight.value != ''){
 		calcPrefs.width = userWidth.value;
 		calcPrefs.height = userHeight.value;
 		popup_calc.style.display = 'none';
 		showModal(calcProfileOverlay);
 		} else {
-			mainOverlay.appendChild(newmess);
-			newmess.textContent = '';
-			newmess.textContent = 'Вы не ввели значения';		
+			mainOverlay.appendChild(newMess);
+			newMess.textContent = '';
+			newMess.textContent = 'Вы не ввели значения';		
 		}
 	});
 
@@ -235,6 +238,7 @@ let tabContent = document.getElementsByClassName('tab-content');
 	});	
 
 	calcProfileBtn.addEventListener('click', () =>{
+		newMess.textContent = '';
 		if (warm.checked || cold.checked){
 		calcProfileOverlay.style.display = 'none';
 		showModal(calcEndOverlay);
@@ -246,9 +250,9 @@ let tabContent = document.getElementsByClassName('tab-content');
 				calcPrefs.wheather = 'Холодное';
 			}
 		} else {
-			document.querySelector('.popup_calc_profile_content').appendChild(newmess);
-			newmess.textContent = '';
-			newmess.textContent = 'Пожалуйста выберите тип погоды';
+			document.querySelector('.popup_calc_profile_content').appendChild(newMess);
+			newMess.textContent = '';
+			newMess.textContent = 'Пожалуйста выберите тип погоды';
 		}
 
 	});
@@ -278,6 +282,7 @@ function exitCalc(overlay) {
 				if (e.target.innerHTML.length == 1) {
 					calcPrefs = {};
 					overlay.style.display = 'none';
+					statusMessage.textContent = '';
 				}
 			});
 }
@@ -290,11 +295,9 @@ function exitCalc(overlay) {
 		num++
 		if (num >= 60) {
 			clearInterval(interval);
-			showModal(phone_overlay)
+			showModal(phone_overlay);
 		}
 	}
-
-		//Pictures zoom
 
 
 });
