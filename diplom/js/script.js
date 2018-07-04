@@ -299,7 +299,7 @@ function exitCalc(overlay) {
 		}
 	}
 
-
+		// Timer
 	let deadline = '2018-07-05';
 
 	function getTimeRemaining(endTime) {
@@ -363,6 +363,40 @@ function exitCalc(overlay) {
 		}
 		return n
 	}
+
+
+		//Images 
+
+
+		let imgs = document.querySelectorAll('.row a img');
+		
+		for (let i = 0; i < imgs.length; i++) {
+			if (imgs[i].classList.contains('lupa') == false) {
+					imgs[i].classList.add('zoom-img');
+			}
+		}
+
+		let bigImgs = document.querySelectorAll('.zoom-img'),
+		    imgModal = document.createElement('div');
+
+			for (let i = 0; i < bigImgs.length; i++) {
+					bigImgs[i].addEventListener('click', function(e) {
+							e.preventDefault();						
+							imgModal.classList.add('popup');
+							imgModal.style.backgroundColor = 'rgba(0, 0, 0, 0.9)'
+							imgModal.innerHTML = `<div><img class="center-img" src="img/our_works/big_img/${i}.png" alt></div>`;
+							imgModal.classList.add('show');
+							document.body.appendChild(imgModal);
+					});		
+			}
+
+			imgModal.addEventListener('click', function(e) {
+					
+					if(e.target.innerHTML.length != 0) {
+						imgModal.classList.remove('show');
+						imgModal.classList.add('hide');
+					}
+			});
 
 
 });
