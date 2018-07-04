@@ -35,7 +35,7 @@ hideTabs(1);
 
 
 	
-	let deadline = '2018-06-15';
+	let deadline = '2018-07-05';
 
 	function getTimeRemaining(endTime) {
 		let t = Date.parse(endTime) - Date.parse(new Date()),

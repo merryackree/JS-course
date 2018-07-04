@@ -300,4 +300,69 @@ function exitCalc(overlay) {
 	}
 
 
+	let deadline = '2018-07-05';
+
+	function getTimeRemaining(endTime) {
+		let t = Date.parse(endTime) - Date.parse(new Date()),
+				seconds = addZero (Math.floor( t / 1000 % 60)),
+				minutes = addZero (Math.floor( t / 1000 / 60 % 60)),
+				hours = addZero(Math.floor( t / (1000 * 60 ) % 24)),
+				days = addZero(Math.floor(t / (1000 * 60 * 60 * 24)));
+
+				if (t == 0 || t < 0){
+					return {
+					'total': 0,
+					};
+				} else {
+					return {
+					'total': t,
+					'days' : days,
+					'hours': hours,
+					'minutes': minutes,
+					'seconds': seconds
+
+				};
+				}
+				
+	};
+
+	function setClock(id, endTime) {
+
+		let timer = document.getElementById(id);
+				days = document.querySelector('.days'),
+		    hours = document.querySelector('.hours'),
+			  minutes = document.querySelector('.minutes'),
+			  seconds = document.querySelector('.seconds');
+
+			  function updateClock() {
+
+			  	let t = getTimeRemaining(endTime);
+			  		if (t.total == 0) {
+			  		clearInterval(timeInterval);
+			  		hours.innerHTML = '00',
+			  		minutes.innerHTML = '00',
+			  		seconds.innerHTML = '00',
+			  		days.innerHTML = '00';
+			  		} else {
+			  		days.innerHTML = t.days,
+			  		hours.innerHTML = t.hours,
+			  		minutes.innerHTML = t.minutes,
+			  		seconds.innerHTML = t.seconds;
+			  		}	
+			  }
+
+			  let timeInterval = setInterval(updateClock, 1000);
+	}
+
+	setClock('timer', deadline);
+
+
+	function addZero(n) {
+		if (n < 10) {
+		n = '0' + n;	
+		}
+		return n
+	}
+
+
 });
