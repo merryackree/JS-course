@@ -306,7 +306,7 @@ function exitCalc(overlay) {
 		let t = Date.parse(endTime) - Date.parse(new Date()),
 				seconds = addZero (Math.floor( t / 1000 % 60)),
 				minutes = addZero (Math.floor( t / 1000 / 60 % 60)),
-				hours = addZero(Math.floor( t / (1000 * 60 ) % 24)),
+				hours = addZero(Math.floor( t / 1000 / 60 / 60 % 24)),
 				days = addZero(Math.floor(t / (1000 * 60 * 60 * 24)));
 
 				if (t == 0 || t < 0){
