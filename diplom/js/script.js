@@ -399,4 +399,56 @@ function exitCalc(overlay) {
 			});
 
 
+			//Decoration Tabs
+
+	let decSlider = document.querySelectorAll('.slick-track .decoration_item');
+	
+	for (let i = 0; i < decSlider.length; i++) {
+			if (decSlider[i].classList.contains('slick-cloned') == false) {
+					decSlider[i].classList.add('decoration-slider-tab');
+			}
+		}
+
+	let decTab = document.querySelectorAll('.decoration-slider-tab'),
+			decLinks = document.querySelectorAll('.decoration-slider-tab .no_click');
+
+
+	let tabDecRows = ['internal', 'external', 'rising', 'roof'];
+			for (let i = 0; i < tabDecRows.length; i++) {
+				document.querySelector(`.${tabDecRows[i]}`).classList.add('tab-dec-content');
+			}
+
+	let tabDecContent = document.getElementsByClassName('tab-dec-content');
+
+		function hideDecTabs(a){
+			for (let i = a; i < tabDecContent.length; i++) {
+				tabDecContent[i].classList.remove('show');
+				tabDecContent[i].classList.add('hide');
+			}
+		}
+
+
+		hideDecTabs(1);
+
+		function showDecTabs(b) {
+			if (tabDecContent[b].classList.contains('hide')) {
+				hideDecTabs(0);
+				tabDecContent[b].classList.remove('hide');
+				tabDecContent[b].classList.add('show');
+			}
+
+		}
+
+		for (let i = 0; i < decTab.length; i++) {
+			decTab[i].addEventListener('click', function(e) {
+				for(let j = 0; j < decLinks.length; j++) {
+					decLinks[j].classList.remove('after_click');
+				}
+				decLinks[i].classList.add('after_click');
+				e.preventDefault();
+				showDecTabs(i);
+			});
+		}
+
+
 });
